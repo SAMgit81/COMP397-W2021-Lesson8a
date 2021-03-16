@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Header("Controller")]
+    public Joystick Joystick;
+    public float horizontalSenstivity;
+    public float verticalSenstivity;
+
     public CharacterController controller;
 
     [Header("Movement")]
@@ -33,10 +38,12 @@ public class PlayerBehaviour : MonoBehaviour
     [Range(0, 100)]
     public int health = 100;
 
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
     }
 
     // Update is called once per frame - once every 16.6666ms
@@ -49,9 +56,9 @@ public class PlayerBehaviour : MonoBehaviour
         {
             velocity.y = -2.0f;
         }
+        float x = Joystick.Horizontal;
+        float z = Joystick.Vertical;
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
 

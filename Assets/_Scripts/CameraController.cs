@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Controller")]
+    public Joystick Joystick;
+    public float horizontalSenstivity;
+    public float verticalSenstivity;
+
+
     public float mouseSensitivity = 1000.0f;
     public Transform playerBody;
 
@@ -12,14 +18,17 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX = Joystick.Horizontal;
+        float mouseY = Joystick.Vertical;
+
 
         XRotation -= mouseY;
         XRotation = Mathf.Clamp(XRotation, -90.0f, 90.0f);

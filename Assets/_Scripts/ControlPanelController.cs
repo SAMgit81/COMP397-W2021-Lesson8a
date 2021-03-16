@@ -34,20 +34,7 @@ public class ControlPanelController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            isOnScreen = !isOnScreen;
-            timer = 0.0f;
-
-            if (isOnScreen)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                playerCamera.enabled = false;
-            }
-            else
-            {
-                
-                Cursor.lockState = CursorLockMode.Locked;
-                playerCamera.enabled = true;
-            }
+            ToggleMenuButton();
         }
 
         if (isOnScreen)
@@ -57,6 +44,24 @@ public class ControlPanelController : MonoBehaviour
         else
         {
             MoveControlPanelUp();
+        }
+    }
+
+    void ToggleMenuButton()
+    {
+        isOnScreen = !isOnScreen;
+        timer = 0.0f;
+
+        if (isOnScreen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            playerCamera.enabled = false;
+        }
+        else
+        {
+
+            Cursor.lockState = CursorLockMode.Locked;
+            playerCamera.enabled = true;
         }
     }
 
@@ -81,5 +86,10 @@ public class ControlPanelController : MonoBehaviour
         {
            pausable.TogglePause();
         }
+    }
+
+    public void OnToggleButtonPressed()
+    {
+        ToggleMenuButton();
     }
 }
